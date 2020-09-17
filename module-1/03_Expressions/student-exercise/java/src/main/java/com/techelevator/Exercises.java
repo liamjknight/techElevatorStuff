@@ -586,6 +586,7 @@ public class Exercises {
 			return a;
 		}else if (c == 13) {
 			return a+b;
+			}
 		/*int total;
 		if (a != 13 && b != 13 && c != 13) {
 			total = a+b+c;
@@ -594,8 +595,8 @@ public class Exercises {
 		}else if (b == 13) {
 			total = a;
 		}else {
-			total = a+b;*/
-		}
+			total = a+b;
+		}*/
 	}//question about the last 2 not returning data, I got the correct answers to show in the unit tests but what
 	//can I do to fix this error?
 
