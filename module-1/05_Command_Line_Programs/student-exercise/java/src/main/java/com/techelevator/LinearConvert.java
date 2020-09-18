@@ -1,27 +1,36 @@
 package com.techelevator;
-
 import java.util.Scanner;
 
 public class LinearConvert {
-	public void conversionMethod(int length, String type) {
-		if (type=="m") {
-			int toFeet = (int)(length * 3.2808399);
-			System.out.println(toFeet);
-		}else if (type=="f") {
-			int toMeters = (int)(length * 0.3048);
-			System.out.println(toMeters);
-		}
-	}
 
-	public static void main(String[] args) {
-		Scanner userInput = new Scanner(System.in);
-		LinearConvert convert = new LinearConvert();
+	public void meterFeetConversion(double length, String type) {
+		if (type=="m") {//toFeet
+			double toFeet = (length * 3.2808399);
+			int toFeetFinal = (int)toFeet;
+			System.out.println(toFeetFinal);
+		}else if (type=="f") {//toMeters
+			double toMeters = (length * 0.3048);
+			int toMetersFinal = (int)toMeters;
+			System.out.println(toMetersFinal);
+		}
 		
-		System.out.println("Please enter the length: ");
+		
+	}
+	
+	public static void main(String[] args) {
+		//bringing in classes
+		Scanner userInput = new Scanner(System.in);
+		LinearConvert conversionTime = new LinearConvert();
+		//getting length variable
+		System.out.println("What's the length?");
 		int length = Integer.parseInt(userInput.nextLine());
-		System.out.println("Is the measurement in (m)eter, or (f)eet?");
+		System.out.println(length);
+		//getting type variable
+		System.out.println("Feet or Meters?");
 		String type = userInput.nextLine();
-		convert.conversionMethod(length, type);
+		System.out.println(type);
+		
+		conversionTime.meterFeetConversion(length, type);//running method
 	}
 
 }
