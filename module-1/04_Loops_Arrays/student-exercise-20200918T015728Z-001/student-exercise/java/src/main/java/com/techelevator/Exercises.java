@@ -21,7 +21,11 @@ public class Exercises {
 	 sameFirstLast([1, 2, 1]) → true
 	 */
 	public boolean sameFirstLast(int[] nums) {
-		return false;
+		if (nums.length>0&&nums[0]==nums[nums.length-1]) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 	/*
@@ -29,7 +33,8 @@ public class Exercises {
 	 makePi() → [3, 1, 4]
 	 */
 	public int[] makePi() {
-		return new int[] {};
+		int[]pi = {3,1,4};
+		return pi;
 	}
 
 	/*
@@ -40,7 +45,13 @@ public class Exercises {
 	 commonEnd([1, 2, 3], [1, 3]) → true
 	 */
 	public boolean commonEnd(int[] a, int[] b) {
-		return false;
+		if (a[0]==b[0]) {
+			return true;
+		}else if (a[a.length-1]==b[b.length-1]) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 	/*
