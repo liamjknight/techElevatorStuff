@@ -10,7 +10,13 @@ public class Exercises {
 	 firstLast6([13, 6, 1, 2, 3]) → false
 	 */
 	public boolean firstLast6(int[] nums) {
-		return false;
+		if (nums[0] == 6) {
+			return true;
+		}else if (nums[nums.length-1] == 6){
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 	/*
@@ -21,7 +27,14 @@ public class Exercises {
 	 sameFirstLast([1, 2, 1]) → true
 	 */
 	public boolean sameFirstLast(int[] nums) {
-		return false;
+		if (nums.length >= 2) {
+			if (nums[0] == nums[nums.length-1]) {
+				return true;
+			}
+			return false;
+		}else {
+			return false;
+		}
 	}
 
 	/*
@@ -29,7 +42,8 @@ public class Exercises {
 	 makePi() → [3, 1, 4]
 	 */
 	public int[] makePi() {
-		return new int[] {};
+		int[] pi = {3, 1, 4};
+		return pi;
 	}
 
 	/*
@@ -40,7 +54,11 @@ public class Exercises {
 	 commonEnd([1, 2, 3], [1, 3]) → true
 	 */
 	public boolean commonEnd(int[] a, int[] b) {
-		return false;
+		if (a[a.length-1] == b[b.length-1]) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 	/*
@@ -50,9 +68,13 @@ public class Exercises {
 	 sum3([7, 0, 0]) → 7
 	 */
 	public int sum3(int[] nums) {
-		return 0;
+		int sum = 0;
+		for (int i = 0; i < nums.length-1; i++) {
+			sum += nums[i];
+		}
+		return sum;//needs work
 	}
-
+	
 	/*
 	 6. Given an array of ints length 3, return an array with the elements "rotated left" so {1, 2, 3} 
 	 yields {2, 3, 1}.
@@ -61,7 +83,12 @@ public class Exercises {
 	 rotateLeft3([7, 0, 0]) → [0, 0, 7]
 	 */
 	public int[] rotateLeft3(int[] nums) {
-		return new int[] {};
+		int moveToLast = nums[0];
+		for (int i = 0; i < nums.length-1; i++) {
+			nums[i]= nums[i+1]; 
+		}
+		nums[nums.length-1] = moveToLast;
+		return nums;
 	}
 
 	/*
@@ -72,7 +99,11 @@ public class Exercises {
 	 reverse3([7, 0, 0]) → [0, 0, 7]
 	 */
 	public int[] reverse3(int[] nums) {
-		return new int[] {};
+		int firstToLast = nums[0];
+		int lastToFirst = nums[2];
+		nums[0] = lastToFirst;
+		nums[2] = firstToLast;
+		return nums;
 	}
 
 	/*
@@ -83,7 +114,14 @@ public class Exercises {
 	 maxEnd3([2, 11, 3]) → [3, 3, 3]
 	 */
 	public int[] maxEnd3(int[] nums) {
-		return new int[] {};
+		int highVal;
+		if (nums[0]>nums[1]&&nums[0]>nums[2}) {
+			highVal
+		}
+		nums[0]=highVal;
+		nums[1]=highVal;
+		nums[2]=highVal;
+		return nums;//needs work
 	}
 
 	/*
@@ -160,7 +198,15 @@ public class Exercises {
 	 sum28([1, 2, 3, 4]) → false
 	 */
 	public boolean sum28(int[] nums) {
-		return false;
+		int sumOfTwos;
+		for (int i = 0; i < nums.length-1; i++) {
+			sumOfTwos = (nums[i] == 2)?sumOfTwos+2:sumOfTwos;
+		}
+		if (sumOfTwos==8) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 }
