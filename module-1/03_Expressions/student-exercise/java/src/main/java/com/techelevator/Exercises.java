@@ -555,15 +555,16 @@ public class Exercises {
 	 loneSum(3, 3, 3) → 0
 	 */
 	public int loneSum(int a, int b, int c) {
-		int total = 0;
-		if (a != b && a != c) {
-			total += a;
-		}else if (b != a && b != c) {
-			total += b;
-		}else if (c != a && c!= b) {
-			total += c;
+		if (a==b&&a==c) {
+			return 0;
+		}else if (a==b) {
+			return c;
+		}else if (b==c) {
+			return a;
+		}else if (c==a) {
+			return b;
 		}else {
-			return total;
+			return a+b+c;
 		}
 	}
 
@@ -578,25 +579,20 @@ public class Exercises {
 	 luckySum(13, 13, 3) → 0
 	 */
 	public int luckySum(int a, int b, int c) {
-		if (a != 13 && b != 13 && c != 13) {
-			return a+b+c;
-		}else if (a == 13) {
-			return (c != 13)?c:0;
-		}else if (b == 13) {
+		if(a==13&&b==13) {
+			return 0;
+		}else if (a==13&&c==13) {
+			return 0;
+		}else if (a==13) {
+			return c;
+		}else if (b==13) {
 			return a;
-		}else if (c == 13) {
+		}else if (c==13) {
 			return a+b;
-			}
-		/*int total;
-		if (a != 13 && b != 13 && c != 13) {
-			total = a+b+c;
-		}else if (a == 13) {
-			total = (c != 13)?c:0;
-		}else if (b == 13) {
-			total = a;
 		}else {
-			total = a+b;
-		}*/
+			return a+b+c;
+		}
+		
 	}//question about the last 2 not returning data, I got the correct answers to show in the unit tests but what
 	//can I do to fix this error?
 
