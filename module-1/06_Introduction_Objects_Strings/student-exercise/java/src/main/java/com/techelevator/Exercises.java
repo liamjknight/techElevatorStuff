@@ -193,11 +193,15 @@ public class Exercises {
 	 endsLy("oddy") → false
 	 */
 	public boolean endsLy(String str) {
-		if (str.substring(str.length()-2).contentEquals("ly")) {
-			return true;
+		if (str.length()>1) {
+			if (str.substring(str.length()-2).contentEquals("ly")) {
+				return true;
+			}else {
+				return false;
+			}
 		}else {
 			return false;
-		}
+		}	
 	}
 
 	/*
@@ -220,7 +224,8 @@ public class Exercises {
 	 twoChar("java", 3) → "ja"
 	 */
 	public String twoChar(String str, int index) {
-		if (index+1 >= str.length()) {
+		System.out.println(str+" "+index);
+		if (index+1 >= str.length()||index<0) {
 			return str.substring(0,2);
 		}else {
 			return str.substring(index, index+2);
@@ -309,6 +314,7 @@ public class Exercises {
 	public boolean doubleX(String str) {
 		if (str.contains("x")) {
 			Integer indexAddOne = str.indexOf("x") + 1;
+			System.out.println(indexAddOne);
 			if (str.substring(indexAddOne, indexAddOne+1).equals("x")) {
 				return true;
 			}else {
@@ -355,14 +361,18 @@ public class Exercises {
 	 last2("axxxaaxx") → 2
 	 */
 	public int last2(String str) {
+		
 		int count = 0;
+		if(str.length()>1) {
 		String compare = str.substring(str.length()-2);
-		System.out.println(compare);
-			for (int i = 0; i < str.length()-4; i++) {
+		
+			for (int i = 0; i < str.length()-2; i++) {
+				
 				if (str.substring(i,i+2).equals(compare)) {
 					count++;
 				}
 			}
+		}
 			return count;
 		}
 
@@ -392,7 +402,19 @@ public class Exercises {
 	 altPairs("CodingHorror") → "Congrr"
 	 */
 	public String altPairs(String str) {
-		return null;
+		System.out.println();
+		String returnString = "";
+		
+		for (int i = 0; i < str.length(); i+=4) {
+			if (i+2<=str.length()) {
+				returnString += str.substring(i,i+2);
+				System.out.println(returnString+" 2added");
+			}else {
+				returnString += str.charAt(i);
+				System.out.println(returnString+" 1added");
+			}
+		}
+		return returnString;
 	}
 
 	/*
