@@ -1,21 +1,48 @@
 package com.techelevator;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 public class Tutorial {
 	
 
     public static void main(String[] args) {
 
-        // Step One: Declare a Map
-
+        //Declare a Map
+    	Map<String, String> nameToZip = new HashMap<String, String>();
     	
-    	// Step Two: Add items to a Map
-
+    	//Add items to a Map
+    	nameToZip.put("Mary","19003");
+    	nameToZip.put("Barry","19004");
+    	nameToZip.put("Carey","19004");
     	
-    	// Step Three: Loop through a Map
-
+    	//Check if Key exists
+    			String newKey= "Jerry";
+    			String newValue = "19006";
+    			
+    			if (nameToZip.containsKey(newKey)) {
+    				System.out.println(newKey+" already exists.");
+    			}else {
+    				nameToZip.put(newKey, newValue);
+    			}
+		
+		//Loop through a Map
+    	Set<String> nameToZipKeys = nameToZip.keySet();
+    	for (String value : nameToZipKeys) {
+			System.out.println(value+" lives in: "+nameToZip.get(value));
+    	}
+    	
+    	//Check if Key exists
+    			newKey= "Jerry";
+    			newValue = "19006";
+    			
+    			if (nameToZip.containsKey(newKey)) {
+    				System.out.println(newKey+" already exists.");
+    			}else {
+    				nameToZip.put(newKey, newValue);
+    			}
     }
 
 }

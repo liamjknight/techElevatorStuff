@@ -1,7 +1,9 @@
 package com.techelevator;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+
+public class Exercises {
 
 	/*
 	 Note, for-each is preferred, and should be used when possible.
@@ -14,12 +16,11 @@ import java.util.ArrayList;
 	 array2List( {"Left", "Right", "Forward", "Back"} )  ->  ["Left", "Right", "Forward", "Back"]
 	 */
 	public List<String> array2List(String[] stringArray) {
-		List<String> arrayToList = new ArrayList<>();
-		
-		for (int i = 0; i < stringArray.length(); i++) {
-			arrayToList.add(stringArray[i]);
+		List<String> toList = new ArrayList<String>();
+		for (int i = 0; i < stringArray.length; i++) {//for loop to iterate 
+			toList.add(stringArray[i]);			
 		}
-		return arrayToString;
+		return toList;
 	}
 
 	/*
@@ -29,7 +30,12 @@ import java.util.ArrayList;
 	 list2Array( ["Left", "Right", "Forward", "Back"] )  ->  {"Left", "Right", "Forward", "Back"}
 	 */
 	public String[] list2Array(List<String> stringList) {
-		return null;
+		String[] toArray = new String[stringList.size()];
+		
+		for (int i = 0; i < stringList.size(); i++) {
+			toArray[i] = stringList.get(i); 
+		}
+		return toArray;
 	}
 
 	/*
