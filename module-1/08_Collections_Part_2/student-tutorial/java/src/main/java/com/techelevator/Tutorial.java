@@ -27,7 +27,7 @@ public class Tutorial {
     			}else {
     				nameToZip.put(newKey, newValue);
     			}
-		
+		System.out.println("\nIterating via Set=KeyValues");
 		//Loop through a Map
     	Set<String> nameToZipKeys = nameToZip.keySet();
     	for (String value : nameToZipKeys) {
@@ -43,6 +43,12 @@ public class Tutorial {
     			}else {
     				nameToZip.put(newKey, newValue);
     			}
+    	System.out.println("\nIterating via KVP");		
+    	//Iterating via K-V Pairs
+    	for(Map.Entry<String, String> nameZipEntry : nameToZip.entrySet()) {
+    		System.out.println(nameZipEntry.getKey()+" lives in: "+
+    	nameZipEntry.getValue());
+    	}
     }
 
 }

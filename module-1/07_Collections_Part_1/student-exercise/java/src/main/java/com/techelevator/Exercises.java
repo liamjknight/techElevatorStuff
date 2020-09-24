@@ -1,6 +1,7 @@
 package com.techelevator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Exercises {
@@ -46,7 +47,13 @@ public class Exercises {
 	 no4LetterWords( {"Jack", "Jill", "Jane", "John", "Jim"} )  ->  ["Jim"]
 	 */
 	public List<String> no4LetterWords(String[] stringArray) {
-		return null;
+		List<String> returnString = new ArrayList<String>();
+		for (int i = 0; i < stringArray.length; i++) {
+			if (stringArray[i].length()!=4) {
+				returnString.add(stringArray[i]);
+			}
+		}
+		return returnString;
 	}
 
 	/*
@@ -56,7 +63,11 @@ public class Exercises {
 	 arrayInt2ListDouble( {84, 99, 3285, 13, 877} ) -> [42, 49.5, 1642.5, 6.5, 438.5]
 	 */
 	public List<Double> arrayInt2ListDouble(int[] intArray) {
-		return null;
+		List<Double> returnList = new ArrayList<Double>();
+		for (int i = 0; i < intArray.length; i++) {
+			returnList.add((double)intArray[i]/2);
+		}
+		return returnList;
 	}
 
 	/*
@@ -66,7 +77,7 @@ public class Exercises {
 	 findLargest( [34070, 1380, 81238, 7782, 234, 64362, 627] ) -> 64362
 	 */
 	public Integer findLargest(List<Integer> integerList) {
-		return null;
+		return Collections.max(integerList);
 	}
 
 	/*
@@ -76,7 +87,13 @@ public class Exercises {
 	 oddOnly( {734, 233, 782, 811, 3, 9999} ) -> [233, 811, 3, 9999]
 	 */
 	public List<Integer> oddOnly(Integer[] integerArray) {
-		return null;
+		List<Integer> returnList = new ArrayList<Integer>();
+		for (int i = 0; i < integerArray.length; i++) {
+			if (integerArray[i]%2==1) {
+				returnList.add(integerArray[i]);
+			}
+		}
+		return returnList;
 	}
 
 	/*
@@ -87,6 +104,15 @@ public class Exercises {
 	 foundIntTwice( [9, 23, 44, 2, 88, 44], 44) -> true
 	 */
 	public boolean foundIntTwice(List<Integer> integerList, int intToFind) {
+		int counter = 0;
+		for (int i = 0; i < integerList.size(); i++) {
+			if (integerList.get(i)==intToFind) {
+				counter++;
+			}
+			if (counter>=2) {
+				return true;
+			}
+		}
 		return false;
 	}
 
@@ -104,7 +130,20 @@ public class Exercises {
 	 equals "1")
 	 */
 	public List<String> fizzBuzzList(Integer[] integerArray) {
-		return null;
+		List<String> returnList = new ArrayList<>();
+		for (int i = 0; i < integerArray.length; i++) {
+			if (integerArray[i]%15==0) {
+				returnList.add("FizzBuzz");
+			}else if (integerArray[i]%5==0) {
+				returnList.add("Buzz");
+			}else if (integerArray[i]%3==0) {
+				returnList.add("Fizz");
+			}else {
+				String intToString = Integer.toString(integerArray[i]);
+				returnList.add(intToString);
+			}
+		}
+		return returnList;
 	}
 
 	/*
@@ -115,7 +154,32 @@ public class Exercises {
 	 interleaveLists( [1, 2, 3], [4, 5, 6] )  ->  [1, 4, 2, 5, 3, 6]
 	 */
 	public List<Integer> interleaveLists(List<Integer> listOne, List<Integer> listTwo) {
-		return null;
+		List<Integer> returnList = new ArrayList<Integer>();
+		
+		System.out.println(listOne+"-"+listTwo);
+		
+		if (listOne.size()>listTwo.size()) {
+			for (int i = 0; i < listOne.size(); i++) {
+				if (i<listOne.size()) {
+					returnList.add(listOne.get(i));
+				}
+				if (i<listTwo.size()) {
+					returnList.add(listTwo.get(i));
+				}
+				System.out.println(returnList);
+			}
+		}else {
+			for (int i = 0; i < listTwo.size(); i++) {
+				if (i<listOne.size()) {
+					returnList.add(listOne.get(i));
+				}
+				if (i<listTwo.size()) {
+					returnList.add(listTwo.get(i));
+				}
+				System.out.println(returnList);
+			}
+		}
+		return returnList;
 	}
 
 }
