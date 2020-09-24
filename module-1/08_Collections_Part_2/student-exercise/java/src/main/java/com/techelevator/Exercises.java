@@ -34,7 +34,28 @@ public class Exercises {
 	 *
 	 */
 	public String animalGroupName(String animalName) {
-		return null;
+		Map<String, String> animalMap = new HashMap<String, String>();
+		animalMap.put("rhino", "Crash");
+		animalMap.put("giraffe", "Tower");
+		animalMap.put("elephant", "Herd");
+		animalMap.put("lion", "Pride");
+		animalMap.put("crow", "Murder");
+		animalMap.put("pigeon", "Kit");
+		animalMap.put("flamingo", "Pat");
+		animalMap.put("deer", "Herd");
+		animalMap.put("dog", "Pack");
+		animalMap.put("crocodile", "Float");
+		
+		if (animalName != null) {
+			animalName = animalName.toLowerCase();
+		}
+		
+		if (animalMap.containsKey(animalName)) {
+			return animalMap.get(animalName);
+		}else {
+			return "unknown";
+		}
+	
 	}
 
 	/*
@@ -60,7 +81,22 @@ public class Exercises {
 	 *
 	 */
 	public double isItOnSale(String itemNumber) {
-		return -1.0;
+		Map<String, Double> onSaleMap = new HashMap<String, Double>();
+		onSaleMap.put("KITCHEN4001", .20);
+		onSaleMap.put("GARAGE1070", .15);
+		onSaleMap.put("LIVINGROOM", .10);
+		onSaleMap.put("KITCHEN6073", .40);
+		onSaleMap.put("BEDROOM3434", .60);
+		onSaleMap.put("BATH0073", .15);
+		
+		if (itemNumber != null) {
+			itemNumber = itemNumber.toUpperCase();
+		}
+		if (onSaleMap.containsKey(itemNumber)) {
+			return onSaleMap.get(itemNumber);
+		}else {
+			return 0.00;
+		}
 	}
 
 	/*
@@ -74,7 +110,7 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> robPeterToPayPaul(Map<String, Integer> peterPaul) {
-		return null;
+		Map<String, Integer> transferMap = new HashMap<String, Integer>();
 	}
 
 	/*
