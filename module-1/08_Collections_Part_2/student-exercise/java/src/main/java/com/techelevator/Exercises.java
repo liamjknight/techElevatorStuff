@@ -110,8 +110,42 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> robPeterToPayPaul(Map<String, Integer> peterPaul) {
-		Map<String, Integer> transferMap = new HashMap<String, Integer>();
+		
+		Map<String, Integer> pete2Paul = new HashMap<String, Integer>();
+		
+			if ((peterPaul.get("Paul")<1000)&&(peterPaul.get("Peter")>0)) {
+				
+				int peter = peterPaul.get("Peter");
+				boolean peterCashOdd = (peter%2==1)?true:false;
+				
+				int peterHalf = (peterCashOdd)?peter-(peter/2):peter/2;
+				
+				int paul = peterPaul.get("Paul");
+				
+				paul = (peterCashOdd)?(paul+peterHalf)-1:paul+peterHalf;
+				
+				pete2Paul.put("Peter", peterHalf);
+				pete2Paul.put("Paul", paul);
+				
+			}else {
+				pete2Paul=peterPaul;
+			}
+		return pete2Paul;
 	}
+		//did not work
+		/*System.out.println(peterPaul.get("Paul"));
+		if (peterPaul.get("Paul")<1000) {
+			System.out.println(peterPaul.get("Peter"));
+			if (peterPaul.get("Peter")>0) {
+				int halfPeter = peterPaul.get("Peter")/2;
+				System.out.println(peterPaul.get("Paul")+halfPeter);
+				peterPaul.put("Paul", peterPaul.get("Paul")+halfPeter);
+				peterPaul.put("Peter", halfPeter);
+			}
+		}
+		return peterPaul;*/
+	
+	
 
 	/*
 	 * Modify and return the given Map as follows: if "Peter" has $50 or more, AND "Paul" has $100 or more,
@@ -123,7 +157,32 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> peterPaulPartnership(Map<String, Integer> peterPaul) {
-		return null;
+		if (peterPaul.get("Peter")>=50) {
+			if (peterPaul.get("Paul")>=100) {
+//This is the one that I could not solve, would like to go over with you.
+				int paulCash = peterPaul.get("Paul");//paul stuff
+				System.out.println("paul "+paulCash);
+				int paulInvest = paulCash/4;
+				peterPaul.put("Paul", paulCash-paulInvest);
+				System.out.println("Paul-invest "+paulCash);
+				
+				int peterCash = peterPaul.get("Peter");//peter stuff
+				System.out.println("Peter "+peterCash);
+				int peterInvest = peterCash/4;
+				peterPaul.put("Peter", peterCash-peterInvest);
+				System.out.println("Peter-invest "+peterCash);
+				
+				int combinedTotal = (paulInvest+peterInvest);
+				System.out.println("Partner "+combinedTotal);
+				peterPaul.put("PeterPaulPartnership", combinedTotal);
+				System.out.println(peterPaul);
+				System.out.println("------------------------------");
+				return peterPaul;
+			}
+		}
+		System.out.println(peterPaul);
+		System.out.println("------------------------------");
+		return peterPaul;
 	}
 
 	/*
@@ -135,7 +194,12 @@ public class Exercises {
 	 * beginningAndEnding(["muddy", "good", "moat", "good", "night"]) → {"g": "d", "m": "t", "n": "t"}
 	 */
 	public Map<String, String> beginningAndEnding(String[] words) {
-		return null;
+		Map<String, String> firstNLast = new HashMap<String, String>();
+		
+		for (String string : words) {
+			firstNLast.put(string.substring(0, 1), string.substring(string.length()-1));
+		}
+		return firstNLast;
 	}
 
 	/*
@@ -151,7 +215,21 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> wordCount(String[] words) {
-		return null;
+		Map<String, Integer> returnMap = new HashMap<String, Integer>();
+		
+		for (int i = 0; i < words.length; i++) {
+			int count = 1;
+			for (int j = i+1; j < words.length; j++) {
+				if (words[i].equals(words[j])) {
+					count++;
+				}
+			
+			}
+			if (returnMap.containsKey(words[i])==false) {
+				returnMap.put(words[i], count);
+			}
+		}
+		return returnMap;
 	}
 
 	/*
@@ -166,7 +244,21 @@ public class Exercises {
 	 *
 	 */
 	public Map<Integer, Integer> integerCount(int[] ints) {
-		return null;
+		Map<Integer, Integer> returnMap = new HashMap<Integer, Integer>();
+		
+		for (int i = 0; i < ints.length; i++) {
+			int count = 1;
+			for (int j = i+1; j < ints.length; j++) {
+				if (ints[i]==ints[j]) {
+					count++;
+				}
+			
+			}
+			if (returnMap.containsKey(ints[i])==false) {
+				returnMap.put(ints[i], count);
+			}
+		}
+		return returnMap;//copy, paste, change array name. That was a hard one!~
 	}
 
 	/*
@@ -179,7 +271,20 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Boolean> wordMultiple(String[] words) {
-		return null;
+		Map<String, Boolean> returnMap = new HashMap<String, Boolean>();
+		
+		for (String string : words) {
+			returnMap.put(string, false);
+		}
+		
+		for (int i = 0; i < words.length; i++) {
+			for (int j = i+1; j < words.length; j++) {
+				if (words[i].equals(words[j])) {
+					returnMap.put(words[i], true);
+				}
+			}
+		}
+		return returnMap;
 	}
 
 	/*
@@ -194,7 +299,22 @@ public class Exercises {
 	 */
 	public Map<String, Integer> consolidateInventory(Map<String, Integer> mainWarehouse,
 			Map<String, Integer> remoteWarehouse) {
-		return null;
+		/*needs to loop through remote warehouse and see if each key is already included, if so
+		 * add remote to main and put that new value back. if key doesnt exist, make new k/v
+		 * pair in main using info from remote*/
+		
+		for (Map.Entry<String, Integer> entry : remoteWarehouse.entrySet()) {
+			if (mainWarehouse.containsKey(entry.getKey())) {
+				int mainCount = mainWarehouse.get(entry.getKey());
+				int remoteCount = entry.getValue();
+				int newCount = mainCount+remoteCount;
+				mainWarehouse.put(entry.getKey(), newCount);
+				
+			}else {
+				mainWarehouse.put(entry.getKey(), entry.getValue());
+			}
+		}
+		return mainWarehouse;	
 	}
 
 	/*
@@ -213,7 +333,20 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> last2Revisited(String[] words) {
-		return null;
+		Map<String, Integer> returnMap = new HashMap<String, Integer>();
+		
+		for (String compare:words) {//to loop through array of strings
+			int count = 0;//count times last 2 substring is repeated
+			for (int j = 0; j < compare.length()-2; j++) {//iterating through substring, minus two in order to stop before final index
+				String compareEnd = compare.substring(compare.length()-2);//variable holding the final 2 chars of String compare
+				String comparedString = compare.substring(j,j+2);//variable holding the current index and next to be compared
+				if (compareEnd.equals(comparedString)) {//compare substrings
+					count++;//increase count if compare is true
+				}
+			}
+			returnMap.put(compare, count);//add string and it's count to map
+		}
+		return returnMap;
 	}
 
 }
