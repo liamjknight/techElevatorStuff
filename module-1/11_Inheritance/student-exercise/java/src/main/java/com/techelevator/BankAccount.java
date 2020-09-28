@@ -3,46 +3,41 @@ package com.techelevator;
 public class BankAccount {
 	private String accountHolderName;
 	private String accountNumber;
-	private double balance;
+	private int balance;
 	
-	//getters
+	//getters and setters
 	public String getAccountHolderName() {
 		return accountHolderName;
 	}
 	public String getAccountNumber() {
 		return accountNumber;
 	}
-	public double getBalance() {
+	public int getBalance() {
 		return balance;
 	}
+	
 	
 	//constructors
 	public BankAccount(String accountHolderName, String accountNumber) {
 		this.accountHolderName=accountHolderName;
 		this.accountNumber=accountNumber;
+		this.balance=0;
 	}
 	
-	public BankAccount(String accountHolderString, String accountNumber, Double balance) {
+	public BankAccount(String accountHolderString, String accountNumber, int balance) {
 		this.accountHolderName=accountHolderString;
 		this.accountNumber=accountNumber;
 		this.balance=balance;
 	}
 	
 	//methods
-	public double deposit(double amountToDeposit) {
-		return balance+amountToDeposit;	
+	public int deposit(int amountToDeposit) {
+		this.balance+=amountToDeposit;
+		return balance;	
 	}
 	
-	public double withdraw(double amountToWithdraw) {
-		if(balance-amountToWithdraw<0) {
-			amountToWithdraw+=10;
-			if (balance-amountToWithdraw>-100) {
-				return balance - amountToWithdraw;
-			}else {
-				return balance;
-			}
-		}else {
-			return balance - amountToWithdraw;
-		}
+	public int withdraw(int amountToWithdraw) {
+		this.balance-=amountToWithdraw;
+		return balance;
 	}
 }
