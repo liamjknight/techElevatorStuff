@@ -1,11 +1,13 @@
 package com.techelevator;
 
-public class BankAccount {
-
+public class BankAccount implements Accountable{
+	
+	//variables
     private String accountHolderName;
     private String accountNumber;
     private int balance;
 
+    //constructors
     public BankAccount(String accountHolder, String accountNumber) {
         this.accountHolderName = accountHolder;
         this.accountNumber = accountNumber;
@@ -17,7 +19,8 @@ public class BankAccount {
         this.accountNumber = accountNumber;
         this.balance = balance;
     }
-
+    
+    //getters
     public String getAccountHolderName() {
         return accountHolderName;
     }
@@ -30,6 +33,7 @@ public class BankAccount {
         return balance;
     }
 
+    //methods
     // Update the balance by using the DollarAmount.Plus method
     public int deposit(int amountToDeposit) {
         balance = balance + amountToDeposit;
@@ -42,4 +46,12 @@ public class BankAccount {
         return balance;
     }
 
+    public int transferTo(BankAccount destinationAccount, int transferAmount) {
+    	int originalBalance = this.getBalance();
+    	this.withdraw(transferAmount);
+    	if(originalBalance!=this.getBalance()) {
+    		destinationAccount.deposit(transferAmount);
+    	}
+    	return this.getBalance();
+    }
 }
