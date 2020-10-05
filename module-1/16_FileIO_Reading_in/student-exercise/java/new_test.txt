@@ -1,0 +1,2 @@
+What color is the sky?,yellow,blue*,green,red
+What color is the sky?|yellow|blue*|green|red

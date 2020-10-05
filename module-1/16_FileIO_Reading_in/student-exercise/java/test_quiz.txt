@@ -1,2 +1,4 @@
 What color is the sky?|yellow|blue*|green|red
 A skeleton walks into a bar, and says to the bartender, "Give me a beer and a ..."|hair brush|dry erase marker|mop*|yo-yo
+What are the Cleveland Browns' odds of winning a championship?|Not likely|Highly likely|Fat chance*|Who cares??
+Who knows best?|Mother|Father|An Apachee Helicoptor|Barney Stinson|All of the Above*
