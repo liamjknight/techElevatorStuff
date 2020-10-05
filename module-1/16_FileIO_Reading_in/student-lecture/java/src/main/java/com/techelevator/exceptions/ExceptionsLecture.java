@@ -27,6 +27,8 @@ public class ExceptionsLecture {
 		}
 		
 		System.out.println();
+		//HELPFUL COMMAND TO HALT EXECUTION 0->sUCCESS, 1->uNSUCCESS
+		System.exit(0);
 		
 		/* try/catch blocks will also catch Exceptions that are thrown from method calls further down the stack */
 		try {
