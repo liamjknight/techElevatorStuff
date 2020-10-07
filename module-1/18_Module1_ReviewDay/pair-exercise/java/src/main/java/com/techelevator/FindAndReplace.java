@@ -11,9 +11,9 @@ public class FindAndReplace {
 	public static void main(String[] args) {
 		//get variables
 		System.out.println("What word would you like to replace?");
-		String wordToReplace = userInput.nextLine().toLowerCase();
+		String wordToReplace = " "+userInput.nextLine().toLowerCase()+" ";
 		System.out.println("What would you like to replace the word with?");
-		String replacementWord = userInput.nextLine();
+		String replacementWord = " "+userInput.nextLine()+" ";
 		
 		File userFile = getUserFile();
 		
