@@ -24,7 +24,7 @@ public class FileSplitter {
 				}
 				System.out.println(stringToBeFile);
 				System.out.println("---------------------------------------------------");
-				
+				//create new file and add text to it
 			}
 		}catch(FileNotFoundException e) {
 			System.out.printf("Error: %s", e.getLocalizedMessage());
