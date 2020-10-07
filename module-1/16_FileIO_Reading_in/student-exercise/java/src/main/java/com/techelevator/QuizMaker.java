@@ -20,7 +20,7 @@ public class QuizMaker {
 				//takes each line and creates question
 				totalQuestions++;
 				String inputString = testScanner.nextLine();
-				String inputSplit[] = inputString.split("[|]");//[|] needed or else the split happens each char
+				String inputSplit[] = inputString.split("\\|");//[|] needed or else the split happens each char
 				int correctAnswer=0;
 				for(int i = 0; i < inputSplit.length; i++) {
 		
