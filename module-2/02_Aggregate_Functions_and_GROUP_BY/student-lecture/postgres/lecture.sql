@@ -32,14 +32,14 @@ SELECT continent, AVG(lifeexpectancy) AS average_life_expectancy FROM country GR
 SELECT continent, AVG(lifeexpectancy) AS average_life_expectancy FROM country WHERE lifeexpectancy IS NOT NULL GROUP BY continent ORDER BY average_life_expectancy DESC;
 
 -- Sum of the population of cities in each state in the USA ordered by state name
-
+--SELECT district AS state, SUM(population) AS total_population
 -- The average population of cities in each state in the USA ordered by state name
 
 -- SUBQUERIES
 -- Find the names of cities under a given government leader
-
+SELECT c.name FROM city AS c WHERE c.countrycode IN (SELECT code FROM country WHERE headofstate LIKE '%II%');
 -- Find the names of cities whose country they belong to has not declared independence yet
-
+SELECT c.name FROM city c WHERE c.countrycode IN (SELECT code FROM country WHERE indepyear IS NULL);
 -- Additional samples
 -- You may alias column and table names to be more descriptive
 
