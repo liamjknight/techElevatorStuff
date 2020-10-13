@@ -1,34 +1,35 @@
 -- ORDERING RESULTS
 
 -- Populations of all countries in descending order
-
---Names of countries and continents in ascending order
-
+Select population FROM country ORDER BY population DESC;
+-- Names of countries and continents in ascending order
+SELECT name, continent FROM country ORDER BY continent, name;
 -- LIMITING RESULTS
 -- The name and average life expectancy of the countries with the 10 highest life expectancies.
-
+SELECT name, lifeexpectancy AS average_life_expectancy FROM country WHERE lifeexpectancy IS NOT NULL ORDER BY lifeexpectancy DESC LIMIT(10);
 -- CONCATENATING OUTPUTS
 
 -- The name & state of all cities in California, Oregon, or Washington.
 -- "city, state", sorted by state then city
-
+SELECT name || ', ' || district AS city_state FROM city WHERE district = 'Washington' OR district = 'Oregon' OR district = 'California' ORDER BY district, name;
 -- AGGREGATE FUNCTIONS
 -- Average Life Expectancy in the World
-
+SELECT AVG(lifeexpectancy) FROM country;
 -- Total population in Ohio
-
+SELECT district, SUM(population) FROM city WHERE district = 'Ohio' GROUP BY district;
 -- The surface area of the smallest country in the world
-
+SELECT name, surfacearea FROM country ORDER BY surfacearea LIMIT 1;
 -- The 10 largest countries in the world
-
+SELECT name, surfacearea FROM country ORDER BY surfacearea DESC LIMIT 10;
 -- The number of countries who declared independence in 1991
-
+SELECT COUNT(*) AS num_countries_declared_independance_in_1991 FROM country WHERE indepyear = '1991';
 -- GROUP BY
 -- Count the number of countries where each language is spoken, ordered from most countries to least
-
+SELECT language, count(*) AS country_count FROM countrylanguage GROUP BY language ORDER BY country_count DESC;
 -- Average life expectancy of each continent ordered from highest to lowest
-
+SELECT continent, AVG(lifeexpectancy) AS average_life_expectancy FROM country GROUP BY continent ORDER BY average_life_expectancy DESC;
 -- Exclude Antarctica from consideration for average life expectancy
+SELECT continent, AVG(lifeexpectancy) AS average_life_expectancy FROM country WHERE lifeexpectancy IS NOT NULL GROUP BY continent ORDER BY average_life_expectancy DESC;
 
 -- Sum of the population of cities in each state in the USA ordered by state name
 
