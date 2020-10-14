@@ -103,6 +103,7 @@ SELECT name, gnp-gnpold AS year_from_last_year, ABS(gnp-gnpold) AS year_from_las
 -- (highest avg population: 4017733.0000, "SGP")
 
 SELECT AVG(population) AS average_population, countrycode FROM city GROUP BY countrycode ORDER BY average_population DESC;
+SELECT cast(AVG(population) AS numeric(14,4)) AS highest_average_pop, countrycode FROM city GROUP BY countrycode ORDER BY highest_average_pop DESC;
 	
 -- 18. The count of cities in each state in the USA, ordered by state name.
 -- (45 rows)
@@ -131,3 +132,12 @@ SELECT MAX(population) AS max_city_pop, countrycode FROM city GROUP BY countryco
 
 SELECT continent||' Min/Avg/Max: ' AS life_expectancy, MIN(lifeexpectancy) AS min_life_expectancy, AVG(lifeexpectancy) AS avg_life_expectancy, 
         MAX(lifeexpectancy) AS max_life_expectancy FROM country GROUP BY continent ORDER BY avg_life_expectancy;
+        
+        
+        
+        
+        
+        
+        
+--practice
+--
