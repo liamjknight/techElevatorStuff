@@ -118,7 +118,8 @@ GROUP BY customer_name ORDER BY lifetime_total DESC LIMIT 10;
 -- 15. The store ID, street address, total number of rentals, total amount of sales (i.e. payments), and average sale of each store.
 -- (NOTE: Keep in mind that an employee may work at multiple stores.)
 -- (Store 1 has 7928 total rentals and Store 2 has 8121 total rentals)
-SELECT s.store_id, count(r.rental_id) FROM store s
+
+SELECT s.store_id, count(r.rental_id) FROM store s --not sure what I did wrong here.
 INNER JOIN address a
         ON s.address_id = a.address_id
 INNER JOIN staff st
@@ -126,6 +127,8 @@ INNER JOIN staff st
         INNER JOIN rental r
                 ON st.staff_id = r.staff_id
 WHERE s.manager_staff_id = r.staff_id GROUP BY s.store_id;
+
+
 -- 16. The top ten film titles by number of rentals
 -- (#1 should be â€œBUCKET BROTHERHOODâ€? with 34 rentals and #10 should have 31 rentals)
 SELECT f.title, count(r.rental_id) AS times_rented FROM rental r
@@ -160,7 +163,7 @@ INNER JOIN film_category fc
 WHERE c.name = 'Action' GROUP BY f.title ORDER BY times_rented DESC LIMIT 5;
 -- 19. The top 10 actors ranked by number of rentals of films starring that actor 
 -- (#1 should be â€œGINA DEGENERESâ€? with 753 rentals and #10 should be â€œSEAN GUINESSâ€? with 599 rentals)
-SELECT a.first_name||', '||a.last_name AS actor_name, count(r.rental_id) AS rented_movies_wit_actor FROM actor a
+SELECT a.first_name||' '||a.last_name AS actor_name, count(r.rental_id) AS rented_movies_with_actor FROM actor a
 INNER JOIN film_actor fa
         ON a.actor_id = fa.actor_id
         INNER JOIN film f
@@ -169,6 +172,31 @@ INNER JOIN film_actor fa
                         ON f.film_id = i.film_id
                         INNER JOIN rental r
                                 ON i.inventory_id = r.inventory_id
-WHERE 
+GROUP BY actor_name ORDER BY rented_movies_with_actor DESC LIMIT 10; --i got the right stuff, just one person had more rentals
+
+SELECT a.first_name, count(r.rental_id) FROM actor a --heres proof
+INNER JOIN film_actor fa
+        ON a.actor_id = fa.actor_id
+        INNER JOIN film f
+                ON fa.film_id = f.film_id
+                INNER JOIN inventory i
+                        ON f.film_id = i.film_id
+                        INNER JOIN rental r
+                                ON i.inventory_id = r.inventory_id
+WHERE a.first_name = 'SUSAN' AND a.last_name = 'DAVIS' GROUP BY a.first_name; 
 -- 20. The top 5 â€œComedyâ€? actors ranked by number of rentals of films in the â€œComedyâ€? category starring that actor 
 -- (#1 should have 87 rentals and #5 should have 72 rentals)
+SELEcT a.first_name||' '||a.last_name AS full_name, count(r.rental_id) AS times_rented FROM actor a
+INNER JOIN film_actor fa
+        ON a.actor_id = fa.actor_id
+        INNER JOIN film f
+                ON fa.film_id = f.film_id
+                INNER JOIN film_category fc
+                        ON f.film_id = fc.film_id
+                        INNER JOIN category c
+                                ON fc.category_id = c.category_id
+                INNER JOIN inventory i
+                        ON f.film_id = i.film_id
+                        INNER JOIN rental r
+                                ON i.inventory_id = r.inventory_id
+WHERE c.name = 'Comedy' GROUP BY full_name ORDER BY times_rented DESC LIMIT 5;                        
