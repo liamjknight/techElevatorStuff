@@ -118,7 +118,18 @@ GROUP BY customer_name ORDER BY lifetime_total DESC LIMIT 10;
 -- 15. The store ID, street address, total number of rentals, total amount of sales (i.e. payments), and average sale of each store.
 -- (NOTE: Keep in mind that an employee may work at multiple stores.)
 -- (Store 1 has 7928 total rentals and Store 2 has 8121 total rentals)
-
+SELECT s.store_id, count(r.rental_id) FROM store s -- I fixed it, but for some reason I'm missing some rentals in No.1
+INNER JOIN address a 
+        ON s.address_id = a.address_id
+INNER JOIN inventory i
+        ON s.store_id = i.store_id
+        INNER JOIN rental r
+                ON i.inventory_id = r.inventory_id
+                INNER JOIN staff st
+                        ON r.staff_id = st.staff_id
+WHERE s.store_id = i.store_id GROUP BY s.store_id;
+                
+/*
 SELECT s.store_id, count(r.rental_id) FROM store s --not sure what I did wrong here.
 INNER JOIN address a
         ON s.address_id = a.address_id
@@ -126,8 +137,10 @@ INNER JOIN staff st
         ON s.manager_staff_id = st.staff_id
         INNER JOIN rental r
                 ON st.staff_id = r.staff_id
-WHERE s.manager_staff_id = r.staff_id GROUP BY s.store_id;
-
+                INNER JOIN inventory i
+                        ON r.inventory_id = i.inventory_id
+WHERE s.store_id = i.store_id GROUP BY s.store_id;
+*/
 
 -- 16. The top ten film titles by number of rentals
 -- (#1 should be â€œBUCKET BROTHERHOODâ€? with 34 rentals and #10 should have 31 rentals)
