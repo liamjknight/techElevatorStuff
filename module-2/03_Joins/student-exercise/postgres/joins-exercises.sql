@@ -118,7 +118,7 @@ GROUP BY customer_name ORDER BY lifetime_total DESC LIMIT 10;
 -- 15. The store ID, street address, total number of rentals, total amount of sales (i.e. payments), and average sale of each store.
 -- (NOTE: Keep in mind that an employee may work at multiple stores.)
 -- (Store 1 has 7928 total rentals and Store 2 has 8121 total rentals)
-SELECT s.store_id, count(r.rental_id) FROM store s -- I fixed it, but for some reason I'm missing some rentals in No.1
+SELECT s.store_id, a.address, count(r.rental_id) AS num_of_sales, count(r.rental_id) AS num_of_rentals, cast(AVG(p.amount) AS numeric(4,2)) AS avg_sales FROM store s -- I fixed it, but for some reason I'm missing some rentals in No.1
 INNER JOIN address a 
         ON s.address_id = a.address_id
 INNER JOIN inventory i
@@ -127,7 +127,9 @@ INNER JOIN inventory i
                 ON i.inventory_id = r.inventory_id
                 INNER JOIN staff st
                         ON r.staff_id = st.staff_id
-WHERE s.store_id = i.store_id GROUP BY s.store_id;
+                INNER JOIN payment p
+                        ON r.rental_id = p.rental_id
+WHERE s.store_id = i.store_id  GROUP BY s.store_id, a.address_id;
                 
 /*
 SELECT s.store_id, count(r.rental_id) FROM store s --not sure what I did wrong here.
