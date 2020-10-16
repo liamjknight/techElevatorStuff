@@ -131,7 +131,7 @@ INNER JOIN inventory i
                         ON r.rental_id = p.rental_id
 WHERE s.store_id = i.store_id  GROUP BY s.store_id, a.address_id;
                 
-/*
+
 SELECT s.store_id, count(r.rental_id) FROM store s --not sure what I did wrong here.
 INNER JOIN address a
         ON s.address_id = a.address_id
@@ -142,7 +142,7 @@ INNER JOIN staff st
                 INNER JOIN inventory i
                         ON r.inventory_id = i.inventory_id
 WHERE s.store_id = i.store_id GROUP BY s.store_id;
-*/
+
 
 -- 16. The top ten film titles by number of rentals
 -- (#1 should be â€œBUCKET BROTHERHOODâ€? with 34 rentals and #10 should have 31 rentals)
@@ -187,9 +187,9 @@ INNER JOIN film_actor fa
                         ON f.film_id = i.film_id
                         INNER JOIN rental r
                                 ON i.inventory_id = r.inventory_id
-GROUP BY actor_name ORDER BY rented_movies_with_actor DESC LIMIT 10; --i got the right stuff, just one person had more rentals
+GROUP BY a.actor_id ORDER BY rented_movies_with_actor DESC LIMIT 10; 
 
-SELECT a.first_name, count(r.rental_id) FROM actor a --heres proof
+SELECT a.first_name, count(r.rental_id) FROM actor a 
 INNER JOIN film_actor fa
         ON a.actor_id = fa.actor_id
         INNER JOIN film f
