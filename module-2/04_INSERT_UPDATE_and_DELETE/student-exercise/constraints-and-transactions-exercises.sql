@@ -2,20 +2,30 @@
 -- The following changes are applied to the "dvdstore" database.**
 
 -- 1. Add actors, Hampton Avenue, and Lisa Byway to the actor table.
-
+INSERT INTO actor (first_name, last_name)
+        VALUES ('Hampton', 'Avenue');
+INSERT INTO actor (first_name, last_name)
+        VALUES ('Lisa', 'Byway');
+SELECT 
 -- 2. Add "Euclidean PI", "The epic story of Euclid as a pizza delivery boy in
 -- ancient Greece", to the film table. The movie was released in 2008 in English.
 -- Since its an epic, the run length is 3hrs and 18mins. There are no special
 -- features, the film speaks for itself, and doesn't need any gimmicks.
-
+INSERT INTO film (title, language_id, description, release_year, original_language_id)
+        VALUES ('Euclidean PI', 1, 'The epic story of Euclid as a pizza delivery boy in ancient Greece', 2008, 1);
 -- 3. Hampton Avenue plays Euclid, while Lisa Byway plays his slightly
 -- overprotective mother, in the film, "Euclidean PI". Add them to the film.
-
+--SELECT * FROM film WHERE title LIKE '%PI';
+--SELECT * FROM actor WHERE last_name = 'Byway' OR last_name = 'Avenue';
+INSERT INTO film_actor (film_id, actor_id) VALUES (1001, 201);
+INSERT INTO film_actor (film_id, actor_id) VALUES (1001, 202);
 -- 4. Add Mathmagical to the category table.
-
+INSERT INTO category (name) VALUES ('Mathemagical');
 -- 5. Assign the Mathmagical category to the following films, "Euclidean PI",
 -- "EGG IGBY", "KARATE MOON", "RANDOM GO", and "YOUNG LANGUAGE"
-
+INSERT INTO film_category (film_id, category_id) VALUES (1001, 17);
+SELECT * FROM film WHERE title = 'Euclidean PI' OR title = 'EGG IGBY' OR title = 'KARATE MOON' OR title = 'RANDOM GO' OR title = 'YOUNG LANGUAGE';
+UPDATE film_category SET category_id = 17 WHERE film_id = 274 OR film_id = 494 OR film_id = 714 OR film_id = 996;
 -- 6. Mathmagical films always have a "G" rating, adjust all Mathmagical films
 -- accordingly.
 -- (5 rows affected)
