@@ -89,3 +89,15 @@ INNER JOIN employee_department ed
 6	Joe	Smith	Childager	M	2007-05-04	2011-11-11	6	1	1	db structuring	        2018-08-06	(null)	       6	1	1	Administration
 8	Frank	Wrong	sure	        M	2007-05-04	2018-07-06	8	1	1	db structuring	        2018-08-06	(null)	       8	2	2	Programmers
 */
+
+
+
+
+
+
+/*SELECT sum(procedure.cost) FROM visit 
+INNER JOIN procedure_visit 
+        ON visit.invoice_id = procedure_visit.invoive_id
+        INNER JOIN procedure
+                ON procedure_visit.procedure_id = procedure.procedure_id
+WHERE invoice_id is 80;*/

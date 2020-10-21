@@ -22,10 +22,10 @@ public class JDBCCityDAO implements CityDAO {
 							   "VALUES(?, ?, ?, ?, ?)";
 		newCity.setId(getNextCityId());
 		jdbcTemplate.update(sqlInsertCity, newCity.getId(),
-										  newCity.getName(),
-										  newCity.getCountryCode(),
-										  newCity.getDistrict(),
-										  newCity.getPopulation());
+										   newCity.getName(),
+										   newCity.getCountryCode(),
+										   newCity.getDistrict(),
+										   newCity.getPopulation());
 	}
 	
 	@Override
@@ -40,7 +40,7 @@ public class JDBCCityDAO implements CityDAO {
 		}
 		return theCity;
 	}
-
+	
 	@Override
 	public List<City> findCityByCountryCode(String countryCode) {
 		ArrayList<City> cities = new ArrayList<>();
@@ -57,19 +57,29 @@ public class JDBCCityDAO implements CityDAO {
 
 	@Override
 	public List<City> findCityByDistrict(String district) {
-		// TODO Auto-generated method stub
-		return null;
+		List<City>cityList = new ArrayList<City>();
+		String findCityByDistrictSql = "SELECT * FROM city WHERE district = ?;";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(findCityByDistrictSql, district);
+		
+		while(results.next()) {
+			City theCity = mapRowToCity(results);
+			cityList.add(theCity);
+		}
+		return cityList;
 	}
 
+	
 	@Override
 	public void update(City city) {
-		// TODO Auto-generated method stub
+		String updateCitySql = "UPDATE city SET name = ?, countrycode = ?, district = ?, population = ? WHERE id = ?;";
+		jdbcTemplate.update(updateCitySql, city.getName(), city.getCountryCode(), city.getDistrict(), city.getPopulation(), city.getId());
 		
 	}
 
 	@Override
 	public void delete(long id) {
-		// TODO Auto-generated method stub
+		String deleteCitySql = "DELETE FROM city WHERE id = ?";
+		jdbcTemplate.update(deleteCitySql, id);
 		
 	}
 
