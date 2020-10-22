@@ -130,8 +130,8 @@ INSERT INTO site (site_number, campground_id, max_rv_length, utilities) VALUES (
 INSERT INTO site (site_number, campground_id, max_rv_length, accessible, utilities) VALUES (9, 2, 20, TRUE, TRUE);
 INSERT INTO site (site_number, campground_id, max_rv_length, accessible, utilities) VALUES (10, 2, 20, TRUE, TRUE);
 -- Acadia Seawall Sites (RV/Trailer 35ft)
-INSERT INTO site (site_number, campground_id, max_rv_length, utilities) VALUES (11, 2, 35, 1);
-INSERT INTO site (site_number, campground_id, max_rv_length, accessible, utilities) VALUES (12, 2, 35, 1, 1);
+INSERT INTO site (site_number, campground_id, max_rv_length, utilities) VALUES (11, 2, 35, TRUE);
+INSERT INTO site (site_number, campground_id, max_rv_length, accessible, utilities) VALUES (12, 2, 35, 1, TRUE);
 
 -- Acadia Schoodic Sites (Tent and Camper)
 INSERT INTO site (site_number, campground_id) VALUES (1, 3);
