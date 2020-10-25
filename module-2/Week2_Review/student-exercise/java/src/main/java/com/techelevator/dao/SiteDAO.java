@@ -8,4 +8,6 @@ import java.util.List;
 public interface SiteDAO {
 
     List<Site> getSitesThatAllowRVs(int parkId);
+    List<Site> returnOpenSites(int parkId); 
+    List<Site> returnOpenSitesInRange(int parkId, String fromDate, String toDate); 
 }

@@ -6,8 +6,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import javax.sql.DataSource;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class JDBCParkDAO implements ParkDAO {
 
@@ -19,7 +22,14 @@ public class JDBCParkDAO implements ParkDAO {
 
     @Override
     public List<Park> getAllParks() {
-        return null;
+    	List<Park> returnList = new ArrayList<Park>();
+        String sqlQuery = "SELECT * FROM park ORDER BY location ASC;";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sqlQuery);
+        
+        while(rowSet.next()) {
+        	returnList.add(mapRowToPark(rowSet));
+        }
+        return returnList;
     }
 
     private Park mapRowToPark(SqlRowSet results) {

@@ -19,7 +19,13 @@ public class JDBCCampgroundDAO implements CampgroundDAO {
 
     @Override
     public List<Campground> getCampgroundsByParkId(int parkId) {
-        return null;
+    	List<Campground> returnList = new ArrayList<Campground>();
+        String sqlQuery = "SELECT * FROM campground WHERE park_id = ?;";
+        SqlRowSet rowSet =jdbcTemplate.queryForRowSet(sqlQuery, parkId);
+        while(rowSet.next()) {
+        	returnList.add(mapRowToCampground(rowSet));
+        }
+        return returnList;
     }
 
     private Campground mapRowToCampground(SqlRowSet results) {

@@ -3,6 +3,7 @@ package com.techelevator.dao.jdbc;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 
 import java.sql.SQLException;
@@ -10,6 +11,7 @@ import java.sql.SQLException;
 public class BaseDAOTests {
 
     static SingleConnectionDataSource dataSource;
+    public static JdbcTemplate jdbc;
 
     @BeforeClass
     public static void setupDataSource() {
@@ -21,6 +23,7 @@ public class BaseDAOTests {
          * returned by this DataSource. This allows us to rollback
          * any changes after each test */
         dataSource.setAutoCommit(false);
+        jdbc = new JdbcTemplate(dataSource);
     }
 
     /* After all tests have finished running, this method will close the DataSource */

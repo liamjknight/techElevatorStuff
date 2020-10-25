@@ -28,5 +28,6 @@ public class JDBCParkDAOTests extends BaseDAOTests {
         assertEquals("Ohio", parks.get(1).getLocation());
         assertEquals("Utah", parks.get(2).getLocation());
     }
-
+    
+    
 }
