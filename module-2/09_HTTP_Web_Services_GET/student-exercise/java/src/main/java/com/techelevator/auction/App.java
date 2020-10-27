@@ -1,10 +1,8 @@
 package com.techelevator.auction;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import org.springframework.beans.TypeMismatchException;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
@@ -36,20 +34,38 @@ public class App {
 
     public static Auction listDetailsForAuction() {
     	System.out.println("Enter the auction ID you would like to see detailed: ");
-        int auctionId = -1;
+    	int id = -1;
     	try {
-        	auctionId = scanner.nextInt();
-        }
-    	catch(NumberFormatException nfe) {
-    		System.out.printf("Error: %s\n", nfe.getLocalizedMessage());
-    		return null;
+    		id = scanner.nextInt();
     	}
-    	catch(TypeMismatchException ex) {
-        	System.out.println("Did not enter an integer.");
-        	return null;
-        }
-        Auction auction = restTemplate.getForObject(API_URL + "/" + auctionId, Auction.class);
-        return auction;
+    	catch(InputMismatchException ime) {
+    		System.out.printf("Error: %s\n", ime.getLocalizedMessage());
+    	}
+    	try {
+    		return restTemplate.getForObject(API_URL + "/" + id, Auction.class);
+    	}
+    	catch(RestClientException rce) {
+    		System.out.printf("Error: %s\n", rce.getLocalizedMessage());
+    		return new Auction() {};
+    	}
+//        int auctionId = -1;
+//    	try {
+//        	auctionId = scanner.nextInt();
+//        	Auction auction = restTemplate.getForObject(API_URL + "/" + auctionId, Auction.class);
+//            return auction;
+//        }
+//    	catch(InputMismatchException ime) {
+//    		System.out.printf("Error: %s\n", ime.getLocalizedMessage());
+//    		return null;
+//    	}
+//    	catch(NumberFormatException nfe) {
+//    		System.out.printf("Error: %s\n", nfe.getLocalizedMessage());
+//    		return null;
+//    	}
+//    	catch(TypeMismatchException ex) {
+//        	System.out.println("Did not enter an integer.");
+//        	return null;
+//        }
     }
 
     public static Auction[] findAuctionsSearchTitle() {
@@ -63,17 +79,23 @@ public class App {
         	System.out.printf("Error: %s\n", hcex.getLocalizedMessage());
         	return null;
         }
-        catch(RestClientException ex) {
-        	System.out.printf("Error: %s\n", ex.getLocalizedMessage());
+        catch(RestClientException rcx) {
+        	System.out.printf("Error: %s\n", rcx.getLocalizedMessage());
         	return null;
         }
     }
 
     public static Auction[] findAuctionsSearchPrice() {
     	System.out.println("Enter price you want to search for: ");
-        BigDecimal searchAmount = new BigDecimal(scanner.nextLine());
-        searchAmount = searchAmount.setScale(2, RoundingMode.CEILING);
-        try {
+        double searchAmount = 0;
+    	try {
+    		searchAmount = scanner.nextDouble();
+    	}
+    	catch(InputMismatchException ime) {
+    		System.out.printf("Error: %s\n", ime.getLocalizedMessage());
+    	}
+    	
+    	try {
         	Auction[] results = restTemplate.getForObject(API_URL + "?currentBid_lte=" + searchAmount, Auction[].class);
         	return results;
         }
