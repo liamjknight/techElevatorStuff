@@ -5,6 +5,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.client.ResourceAccessException;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
 
@@ -68,18 +69,45 @@ public class AuctionService {
     }
 
     public Auction add(String auctionString) {
-        // place code here
-        return null;
+        Auction auction = makeAuction(auctionString);
+        if(auction == null) {
+        	return null;
+        }
+        HttpEntity<Auction> entity = makeEntity(auction);
+        try {
+        	auction = restTemplate.postForObject(BASE_URL + "/" + auction.getId(), entity, Auction.class);
+    	}
+    	catch(RestClientException rex) {
+    		System.out.printf("Error: %s\n", rex.getLocalizedMessage());
+    		return null;
+    	}
+        return auction;
     }
 
     public Auction update(String auctionString) {
-        // place code here
-        return null;
+    	 Auction auction = makeAuction(auctionString);
+         if(auction == null) {
+         	return null;
+         }
+         try {
+        	 restTemplate.put(BASE_URL + "/" + auction.getId(), auction);
+         }
+         catch(RestClientException rex) {
+        	 System.out.printf("Error: %s\n", rex.getLocalizedMessage());
+        	 return null;
+         }
+         return auction;
     }
 
     public boolean delete(int id) {
-    	// place code here
-    	return false; 
+    	try {
+    		restTemplate.delete(BASE_URL + "/" + id);
+    		return true;
+    	}
+        catch(RestClientException rex) {
+       	 	System.out.printf("Error: %s\n", rex.getLocalizedMessage());
+       	 	return false;
+        }
     }
 
     private HttpEntity<Auction> makeEntity(Auction auction) {
