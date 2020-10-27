@@ -36,19 +36,20 @@ public class App {
 
     public static Auction listDetailsForAuction() {
     	System.out.println("Enter the auction ID you would like to see detailed: ");
-        int auctionId = 0;
+        int auctionId = -1;
     	try {
         	auctionId = scanner.nextInt();
-        }catch(TypeMismatchException ex) {
+        }
+    	catch(NumberFormatException nfe) {
+    		System.out.printf("Error: %s\n", nfe.getLocalizedMessage());
+    		return null;
+    	}
+    	catch(TypeMismatchException ex) {
         	System.out.println("Did not enter an integer.");
-        	return listDetailsForAuction();//recurs to let user retry
+        	return null;
         }
-        if(auctionId>0&&auctionId<=listAllAuctions().length) {
-        	return restTemplate.getForObject(API_URL + "/" + auctionId, Auction.class);
-        }else {
-        	System.out.println("ID not attributed to any Auction.");
-        	return listDetailsForAuction();//recurs to let user retry
-        }
+        Auction auction = restTemplate.getForObject(API_URL + "/" + auctionId, Auction.class);
+        return auction;
     }
 
     public static Auction[] findAuctionsSearchTitle() {
@@ -57,9 +58,14 @@ public class App {
         try {
         	Auction[] results = restTemplate.getForObject(API_URL + "?title_like=" + searchString, Auction[].class);
         	return results;
-        }catch(RestClientException ex) {
-        	System.out.printf("Error: %s", ex.getLocalizedMessage());
-        	return findAuctionsSearchTitle();
+        }
+        catch(HttpClientErrorException hcex) {
+        	System.out.printf("Error: %s\n", hcex.getLocalizedMessage());
+        	return null;
+        }
+        catch(RestClientException ex) {
+        	System.out.printf("Error: %s\n", ex.getLocalizedMessage());
+        	return null;
         }
     }
 
@@ -70,9 +76,14 @@ public class App {
         try {
         	Auction[] results = restTemplate.getForObject(API_URL + "?currentBid_lte=" + searchAmount, Auction[].class);
         	return results;
-        }catch(RestClientException ex) {
-        	System.out.printf("Error: %s", ex.getLocalizedMessage());
-        	return findAuctionsSearchTitle();
+        }
+        catch(NumberFormatException nfe) {
+        	System.out.printf("Error: %s\n", nfe.getLocalizedMessage());
+        	return null;
+        }
+        catch(RestClientException ex) {
+        	System.out.printf("Error: %s\n", ex.getLocalizedMessage());
+        	return null;
         }
     }
 
