@@ -1,9 +1,15 @@
 package com.techelevator.auction;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Scanner;
 
+import org.springframework.beans.TypeMismatchException;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
+
+import com.techelevator.models.Auction;
 
 public class App {
 
@@ -24,23 +30,50 @@ public class App {
     }
 
     public static Auction[] listAllAuctions() {
-        // api code here
-        return null;
+        Auction[] auctionList = restTemplate.getForObject(API_URL, Auction[].class);
+        return auctionList;
     }
 
     public static Auction listDetailsForAuction() {
-        // api code here
-        return null;
+    	System.out.println("Enter the auction ID you would like to see detailed: ");
+        int auctionId = 0;
+    	try {
+        	auctionId = scanner.nextInt();
+        }catch(TypeMismatchException ex) {
+        	System.out.println("Did not enter an integer.");
+        	return listDetailsForAuction();//recurs to let user retry
+        }
+        if(auctionId>0&&auctionId<=listAllAuctions().length) {
+        	return restTemplate.getForObject(API_URL + "/" + auctionId, Auction.class);
+        }else {
+        	System.out.println("ID not attributed to any Auction.");
+        	return listDetailsForAuction();//recurs to let user retry
+        }
     }
 
     public static Auction[] findAuctionsSearchTitle() {
-        // api code here
-        return null;
+        System.out.println("Enter text you want to search for: ");
+        String searchString = scanner.nextLine();
+        try {
+        	Auction[] results = restTemplate.getForObject(API_URL + "?title_like=" + searchString, Auction[].class);
+        	return results;
+        }catch(RestClientException ex) {
+        	System.out.printf("Error: %s", ex.getLocalizedMessage());
+        	return findAuctionsSearchTitle();
+        }
     }
 
     public static Auction[] findAuctionsSearchPrice() {
-        // api code here
-        return null;
+    	System.out.println("Enter price you want to search for: ");
+        BigDecimal searchAmount = new BigDecimal(scanner.nextLine());
+        searchAmount = searchAmount.setScale(2, RoundingMode.CEILING);
+        try {
+        	Auction[] results = restTemplate.getForObject(API_URL + "?currentBid_lte=" + searchAmount, Auction[].class);
+        	return results;
+        }catch(RestClientException ex) {
+        	System.out.printf("Error: %s", ex.getLocalizedMessage());
+        	return findAuctionsSearchTitle();
+        }
     }
 
     private static void run() {

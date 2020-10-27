@@ -14,6 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import com.techelevator.models.Auction;
+
 public class AppTest {
 
         App app;

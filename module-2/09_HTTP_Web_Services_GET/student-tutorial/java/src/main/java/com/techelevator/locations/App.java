@@ -1,5 +1,9 @@
 package com.techelevator.locations;
 
+import java.util.Scanner;
+
+import org.springframework.web.client.RestTemplate;
+
 import com.techelevator.models.Location;
 import com.techelevator.services.ConsoleService;
 import com.techelevator.services.LocationService;
@@ -10,6 +14,7 @@ public class App {
 
   public static void main(String[] args) {
     int menuSelection = 999;
+    
 
     ConsoleService consoleService = new ConsoleService();
     LocationService locationService = new LocationService("http://localhost:3000/locations/");
@@ -17,10 +22,12 @@ public class App {
     while (menuSelection != 0) {
       menuSelection = consoleService.printMainMenu();
       if (menuSelection == 1) {
-        // TODO: list all locations
-
+        RestTemplate restTemplate = new RestTemplate();
+        Location[] locations = restTemplate.getForObject(API_URL, Location[].class);
+        consoleService.printLocations(locations);
+        
       } else if (menuSelection == 2) {
-        // TODO: get one location
+        
 
       } else if (menuSelection == 0) {
         // exit
