@@ -75,7 +75,7 @@ public class AuctionService {
         }
         HttpEntity<Auction> entity = makeEntity(auction);
         try {
-        	auction = restTemplate.postForObject(BASE_URL + "/" + auction.getId(), entity, Auction.class);
+        	auction = restTemplate.postForObject(BASE_URL, entity, Auction.class);
     	}
     	catch(RestClientException rex) {
     		System.out.printf("Error: %s\n", rex.getLocalizedMessage());
