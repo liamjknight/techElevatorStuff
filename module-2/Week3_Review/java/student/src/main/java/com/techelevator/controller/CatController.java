@@ -25,7 +25,7 @@ public class CatController {
         this.catPicService = catPicService;
     }
 
-    @RequestMapping(path=".api/cards", method=RequestMethod.GET)
+    @RequestMapping(path="/api/cards", method=RequestMethod.GET)
     public List<CatCard> getUserCollegtion(){
     	return catCardDao.list();
     }
@@ -35,7 +35,7 @@ public class CatController {
     	return catCardDao.get(id);
     }
     
-    @RequestMapping(path="api/cards/random", method=RequestMethod.GET)
+    @RequestMapping(path="/api/cards/random", method=RequestMethod.GET)
     public CatCard getNew() {
     	CatCard newCard = new CatCard();
     	newCard.setCatFact(catFactService.getFact().getText());
@@ -44,20 +44,20 @@ public class CatController {
     	return newCard;
     }
     
-    @RequestMapping(path="api/cards", method=RequestMethod.POST)
+    @RequestMapping(path="/api/cards", method=RequestMethod.POST)
     public CatCard saveCard(@RequestBody CatCard cardToSave) {
     	catCardDao.save(cardToSave);
     	return cardToSave;
     }
     
-    @RequestMapping(path="api/cards", method=RequestMethod.PUT)
+    @RequestMapping(path="/api/cards", method=RequestMethod.PUT)
     public CatCard updateCard(@RequestBody CatCard cardToUpdate) {
     	catCardDao.update(cardToUpdate.getCatCardId(), cardToUpdate);
     	return cardToUpdate;
     }
     
     
-    @RequestMapping(path="api/cards", method=RequestMethod.DELETE)
+    @RequestMapping(path="/api/cards", method=RequestMethod.DELETE)
     public void deleteFromCollection(@RequestBody CatCard cardToDelete) {
     	catCardDao.delete(cardToDelete.getCatCardId());
     }
