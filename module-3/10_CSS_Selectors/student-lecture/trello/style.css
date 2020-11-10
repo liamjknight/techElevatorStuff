@@ -1,0 +1,154 @@
+html{
+    height: 100%;
+    font-size: 16px;
+
+}
+
+*{
+    box-sizing: border-box;
+
+}
+
+body{
+    font-family: "Raleway", sans-serif;
+
+    background-image: linear-gradient(43deg, rgb(233, 232, 232), #565c5f);
+
+    /*
+    lock bkgnd in place
+    */
+    background-attachment: fixed;
+
+    /*
+    do not repeat bkgnd
+    */
+    background-repeat: no-repeat;
+
+    /*
+    make this scroll sideways, not wrap downwards.
+    */
+    white-space: nowrap;
+
+}
+
+div.trello-list{
+    /*
+    multi column layout
+    */   
+    display: inline-block; 
+
+    /*
+    set fixed width
+    */
+    width: 300px;
+
+    /*
+    set bkgnd color
+    */
+    background-color: lightgray;
+
+    /*
+    round element corners
+    */
+    border-radius: 3px 5px;
+
+    /*
+    align along the top of each div
+    */
+    vertical-align: top;
+
+}
+
+div.trello-list h2{
+    /*
+    define margins and font size
+    */
+    margin: 8px;
+    font-size: 1rem;
+    font-weight: bolder;
+
+}
+
+div.trello-list ol{
+    /*
+    setting card margin and padding
+    */
+    margin: 0px;
+    padding: 0px;
+
+}
+
+div.trello-list li{
+    /*
+    remove numbers from list elements
+    */
+    list-style: none;
+
+    background-color: azure;
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 2px;
+
+    font-size: .9rem;
+    font-weight: bold;
+
+    border-radius: 1px 1px;
+
+    white-space: normal;
+
+}
+
+div.trello-list li:hover{
+    background-color: blanchedalmond;
+    color: darkblue;
+
+}
+
+div.trello-list li:last-child{
+    margin-bottom: 0px;
+
+}
+
+div.trello-list a{
+    color: #888;
+    display: block;
+    /*
+    remove underline from hyperlink
+    */
+    text-decoration: none;
+
+    padding: 4px 0px 4px 4px;
+    font-size: .8rem;
+
+}
+
+div.trello-list a:hover{
+    color: blue;
+
+}
+
+header > h1, header > p{
+    display: inline-block;
+    height: 20px;
+    padding-right: 20px;
+    vertical-align: middle;
+
+}
+
+header > h1{
+    font-size: 1.2rem;
+    text-transform: uppercase;
+
+}
+
+header > p{
+    font-size: .9rem;
+}
+
+header{
+    position: fixed;
+
+    top: 0px;
+    height: 50px;
+}
