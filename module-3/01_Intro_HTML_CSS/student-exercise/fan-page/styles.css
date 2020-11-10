@@ -1,0 +1,18 @@
+body{
+background-color: blueviolet;
+font-family: Arial, Helvetica, sans-serif;
+}
+h1{
+color: aliceblue;
+text-align: center;
+}
+h3{
+color: red;
+}
+img{
+    height: 200px;
+}
+
+#quote{
+    text-emphasis: italic;
+}
