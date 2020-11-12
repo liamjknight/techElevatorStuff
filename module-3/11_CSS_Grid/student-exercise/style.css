@@ -50,3 +50,64 @@ header img {
 #student-picture img{
     border-radius: 50%;
 }
+
+#main-grid:not(:last-child){
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 20px;
+    column-gap: 50px;
+    grid-template-areas: "name name pic"
+                        "quote quote pic"
+                     "profile profile contact"
+                          "exp exp exp";
+}
+
+#student-contact{
+    grid-area: contact;
+}
+
+#student-profile{
+    grid-area: profile;
+}
+
+#student-quote{
+    grid-area: quote;
+}
+
+#student-picture{
+    grid-area: pic;
+}
+
+#headline{
+    grid-area: name;
+}
+/*experience*/
+
+#experience-grid{
+    grid-area: exp;
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 20px;
+    column-gap: 50px;
+    grid-template-areas: "code code"
+                           "db db"
+                          "web design";
+}
+
+#experience-code{
+    grid-area: code;
+}
+
+#experience-database{
+    grid-area: db;
+}
+
+#experience-web{
+    grid-area: web;
+}
+
+#experience-design{
+    grid-area: design;
+}
+
