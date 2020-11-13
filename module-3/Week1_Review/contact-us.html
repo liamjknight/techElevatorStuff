@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Elevator Popsicles - Contact Us</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <header id="header-grid">
+        <img src="images/te-pops.png" alt="TE Pop Logo" id="logo"/>
+        <h1 id="title">Tech Elevator Popsicles</h1>
+        <nav id="menu">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="store.html">Store</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <h1>Submit Article</h1>
+        <p>Submit your puppy news using the form below</p>
+        <form action="http://www.puppynewsnetwork.dev/api/articles" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" />
+            <div>&nbsp;</div>
+        
+        
+<label for="source">How did you hear about us?</label>
+            <select name="source" id="source">
+                <option value="popsicle-monthly">Popsicle Monthly</option>
+                <option value="friend">Friend</option>
+                <option value="instagram">Instagram</option>
+                <option value="other">Other</option>
+              </select>              
+            <div>&nbsp;</div>
+        
+            <label for="color">What color is your favorite popsicle?</label>
+            <input type="color" id="popsicle" name="popsicle" />
+            <div>&nbsp;</div>
+        
+            <label for="comments">Please let us know any comments you have:</label>
+            <div>&nbsp;</div>
+            <textarea id="comments" name="comments" rows="10" cols="60"></textarea>
+            <div>&nbsp;</div>
+
+            <label for="submit">Submit</label>
+            <input type="submit" id="submit" name="submit" />
+          </form>
+        </main>
+        <footer id="footer">
+            <footer id="footer">
+                <p>@ Tech Elevator 2020</p>
+            </footer>
+    </body>
+    </html>
+    

@@ -3,12 +3,37 @@ body {
     background-color: #87CEEB;
 }
 
+body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+    "h1 nav"
+    "know know"
+    "popsicle summer"
+    "footer footer"
+    ;
+    align-items: center;
+}
+
+#did-you-know {
+    grid-area: know;
+}
+
+#popsicle-race {
+    grid-area: popsicle;
+}
+
+#summer-deal {
+    grid-area: summer;
+}
+
 nav ul {
     margin: 0;
     padding: 20px 0 0 0;
 }
 
 nav ul li {
+    display: inline-block;
     list-style: none;
     width: 30%;
     background-color: #00afef;
@@ -17,11 +42,15 @@ nav ul li {
     line-height: 50px;
 }
 
+
+
 header img {
     height: 100px;
     width: auto;
 }
-header h1 {
+
+header {
+    grid-area: h1;
     padding-left: 20px;
     padding-top: 10px;
 }
