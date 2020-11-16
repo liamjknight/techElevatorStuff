@@ -1,31 +1,18 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: #87CEEB;
-}
-
-body {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas:
-    "h1 nav"
-    "know know"
-    "popsicle summer"
-    "footer footer"
+    "head head head nav nav nav"
+    "img img know know know know"
+    "race race race deal deal deal"
+    "foot foot foot foot foot foot"
     ;
     align-items: center;
 }
 
-#did-you-know {
-    grid-area: know;
-}
 
-#popsicle-race {
-    grid-area: popsicle;
-}
-
-#summer-deal {
-    grid-area: summer;
-}
 
 nav ul {
     margin: 0;
@@ -41,8 +28,6 @@ nav ul li {
     text-align: center;
     line-height: 50px;
 }
-
-
 
 header img {
     height: 100px;
@@ -83,4 +68,36 @@ main, section, footer {
     font-weight: bold;
     text-align: center;
     text-transform: uppercase;
+}
+
+section{
+    display:flex;
+}
+
+#head{
+    grid-area: head;
+}
+
+#nav{
+    grid-area: nav;
+}
+
+#rainbow-image{
+    grid-area: img;
+}
+
+#did-you-know{
+    grid-area: know;
+}
+
+#popsicle-race{
+    grid-area: race;
+}
+
+#summer-deal{
+    grid-area: deal;
+}
+
+#foot{
+    grid-area: foot;
 }
