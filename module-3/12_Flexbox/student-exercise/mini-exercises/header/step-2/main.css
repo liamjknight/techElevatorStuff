@@ -3,10 +3,14 @@ body {
   padding: 0
 }
 
+header, a, nav, ul{
+  display: flex;
+  flex-direction: row;
+}
+
 header {
   background-color: #F0F0F0;
   padding: 20px;
-  display: flex;
 }
 
 .logo {
@@ -17,12 +21,14 @@ nav {
   flex-grow: 1;
 }
 
+nav, ul{
+  justify-content: center;
+}
+
 ul {
-  display: flex;
   margin: 0;
   padding: 0;
   list-style-type: none;
-  justify-content: center;
 }
 
 li {

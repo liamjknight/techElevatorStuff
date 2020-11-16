@@ -9,6 +9,8 @@ body {
   background-color: #F0F0F0;
   height: 500px;
   display: flex;
+  align-items: center;
+  
 }
 
 .box {
@@ -16,4 +18,5 @@ body {
   background-color: #00AFEF;
   color: #fff;
   border: solid 1px #777;
+
 }
