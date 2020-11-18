@@ -36,19 +36,36 @@ const reviews = [
  * Get our page page title by the id and the query the .name selector
  * once you have the element you can add the product name to the span.
  */
-function setPageTitle() {}
+function setPageTitle() {
+  const pageTitle = document.getElementById('page-title');
+  pageTitle.querySelector('.name').innerHTML = name;
+}
 
 /**
  * Add our product description to the page.
  */
-function setPageDescription() {}
+function setPageDescription() {
+  document.querySelector('.description').innerHTML = description;
+}
 
 /**
  * I will display all of the reviews on the page.
  * I will loop over the array of reviews and use some helper functions
  * to create the elements needed for our markup and add them to the DOM
  */
-function displayReviews() {}
+function displayReviews() {
+  const main = document.getElementById('main');
+
+  reviews.forEach(reviews => {
+      const container = document.createElement('div');
+      container.setAttribute('class','review');
+      //add rest of review
+      addReviewer(container, review.reviewer);
+
+      main.insertAdjacentElement('beforeend', container);
+    }
+  )
+}
 
 /**
  * I will creating a new h4 element with the name of the reviewer and append it to
@@ -57,14 +74,25 @@ function displayReviews() {}
  * @param {HTMLElement} el: The element to append the reviewer to
  * @param {string} name The name of the reviewer
  */
-function addReviewer(parent, name) {}
+function addReviewer(parent, name) {
+  const reviewer = document.createElement('h4');
+  reviewer.innerHTML = name;
+  parent.appendChild(reviewer);
+}
 
 /**
  * I will add the rating div along with a star image for the number of ratings 1-5
  * @param {HTMLElement} parent
  * @param {Number} numberOfStars
  */
-function addRating(parent, numberOfStars) {}
+function addRating(parent, numberOfStars) {
+  const ratingContainer = document.createElement('div');
+  ratingContainer.setAttribute('class', 'ratingStar');
+  for(n = 0; n < numberOfStars; n++){
+    const star = document.createElement('img');
+    
+  }
+}
 
 /**
  * I will add an h3 element along with the review title
