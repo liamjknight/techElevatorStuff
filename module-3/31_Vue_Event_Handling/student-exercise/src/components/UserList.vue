@@ -177,7 +177,7 @@ export default {
     saveUser() {
       this.newUser.id = this.users.length + 1;
 
-      this.users.push(this.newUser);
+      let actualUser = this.newUser
 
       this.resetForm();
     },
