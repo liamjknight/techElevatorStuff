@@ -1,6 +1,11 @@
 <template>
   <div class="book-container">
-    <book-card v-bind:book="book" v-for="book in $store.state.books" v-bind:key="book.isbn" />
+    <router-link :to="{name: book, params: {isbn: isbn}}">
+    <book-card :book="book" 
+    v-for="book in $store.state.books" 
+    :key="book.isbn"
+    />
+    </router-link>
   </div>
 </template>
 
@@ -11,6 +16,11 @@ export default {
     name: 'reading-list',
     components: {
         BookCard
+    },
+    methods: {
+      openDetails(isbn){
+        this.$router.push({name: 'book', params: {isbn: isbn}})
+      }
     }
 }
 </script>
