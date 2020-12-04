@@ -9,8 +9,8 @@
     </div>
   </div>
 </template>
-
 <script>
+import topicService from '../services/TopicService';
 export default {
   name: 'topic-details',
   props: {
@@ -24,10 +24,14 @@ export default {
         messages: []
       },
     }
+  },
+  created(){
+    topicService.getTopic(this.$route.params.id).then((response) => {
+      this.topic = response.data;
+    })
   }
 }
 </script>
-
 <style>
 /** page structure **/
 .topic-details {
@@ -35,28 +39,24 @@ export default {
   margin: 0 auto;
   max-width: 600px;
 }
-
 /** ios1-ios6 bubbles **/
 .topic-details .bubble {
   box-sizing: border-box;
   width: auto;
   position: relative;
   clear: both;
-
-  background: #95c2fd;
-  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.15, #bee2ff), color-stop(1, #95c2fd));
-  background-image: -webkit-linear-gradient(bottom, #bee2ff 15%, #95c2fd 100%);
-  background-image: -moz-linear-gradient(bottom, #bee2ff 15%, #95c2fd 100%);
-  background-image: -ms-linear-gradient(bottom, #bee2ff 15%, #95c2fd 100%);
-  background-image: -o-linear-gradient(bottom, #bee2ff 15%, #95c2fd 100%);
-  background-image: linear-gradient(to top, #bee2ff 15%, #95c2fd 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#95c2fd', endColorstr='#bee2ff');
-
+  background: #95C2FD;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.15, #BEE2FF), color-stop(1, #95C2FD));
+  background-image: -webkit-linear-gradient(bottom, #BEE2FF 15%, #95C2FD 100%);
+  background-image: -moz-linear-gradient(bottom, #BEE2FF 15%, #95C2FD 100%);
+  background-image: -ms-linear-gradient(bottom, #BEE2FF 15%, #95C2FD 100%);
+  background-image: -o-linear-gradient(bottom, #BEE2FF 15%, #95C2FD 100%);
+  background-image: linear-gradient(to top, #BEE2FF 15%, #95C2FD 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#95C2FD', endColorstr='#BEE2FF');
   border: solid 1px rgba(0,0,0,0.5);
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   border-radius: 20px;
-
   -webkit-box-shadow: inset 0 8px 5px rgba(255,255,255,0.65), 0 1px 2px rgba(0,0,0,0.2);
   -moz-box-shadow: inset 0 8px 5px rgba(255,255,255,0.65), 0 1px 2px rgba(0,0,0,0.2);
   box-shadow: inset 0 8px 5px rgba(255,255,255,0.65), 0 1px 2px rgba(0,0,0,0.2);

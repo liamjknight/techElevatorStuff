@@ -1,22 +1,26 @@
 <template>
   <div class="topic-list">
     <div v-for="topic in topics" v-bind:key="topic.id" class="topic">
-      {{ topic.title }}
+     <router-link v-bind:to="{name: 'Messages', params: {id: topic.id}}"> {{ topic.title }}</router-link>
     </div>
   </div>
 </template>
-
 <script>
+import topicService from "../services/TopicService";
 export default {
   name: 'topic-list',
   data() {
     return {
       topics: []
     }
+  },
+  created(){
+    topicService.list().then(response => {
+      this.topics = response.data;
+    });
   }
-}
+};
 </script>
-
 <style>
 .topic-list {
   padding: 20px 20px;
@@ -25,8 +29,11 @@ export default {
 }
 .topic {
   font-size: 24px;
-  border-bottom: 1px solid #f2f2f2;
+  border-bottom: 1px solid #F2F2F2;
   padding: 10px 20px;
+}
+.topic:hover{
+  cursor: pointer;
 }
 .topic:last-child {
   border: 0px;
