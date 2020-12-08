@@ -26,10 +26,8 @@
     </table>
   </div>
 </template>
-
 <script>
 import topicService from "@/services/TopicService.js";
-
 export default {
   name: "topic-list",
   methods: {
@@ -38,14 +36,27 @@ export default {
         this.$store.commit("SET_TOPICS", response.data);
       });
     },
-    deleteTopic(id) {}
+    deleteTopic(id) {
+      topicService.delete(id)
+        .then(response => {
+          if(response.status === 200){
+            this.getTopics();
+          }
+        })
+        .catch(mistake => {
+          if(mistake.response.status === 404){
+            this.$router.push("/404");
+          }else{
+            console.error(mistake);
+          }
+        });
+    }
   },
   created() {
     this.getTopics();
   }
 };
 </script>
-
 <style>
 .topic-list {
   margin: 0 auto;
@@ -53,7 +64,7 @@ export default {
 }
 .topic {
   font-size: 24px;
-  border-bottom: 1px solid #f2f2f2;
+  border-bottom: 1px solid #F2F2F2;
   padding: 10px 20px;
 }
 .topic:last-child {
@@ -68,9 +79,8 @@ td {
   padding: 4px;
 }
 tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: #F2F2F2;
 }
-
 .topic-list a:link,
 .topic-list a:visited {
   color: blue;

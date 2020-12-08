@@ -9,10 +9,8 @@
     </div>
   </form>
 </template>
-
 <script>
 import topicService from "../services/TopicService";
-
 export default {
   name: "create-topic",
   props: ["topicID"],
@@ -25,6 +23,11 @@ export default {
     updateTopic() {
       const topic = { id: this.topicID, title: this.title };
       // call topic service update method
+      topicService.update(topic.id, topic).then(response => {
+        if(response.status===200){
+          this.$router.push('/');
+        }
+      });
     }
   },
   created() {
@@ -42,6 +45,49 @@ export default {
   }
 };
 </script>
-
 <style>
 </style>
+2:18 PM
+MessageService in services:
+import axios from 'axios';
+const http = axios.create({
+  baseURL: "http://localhost:3000"
+});
+export default {
+  get(id) {
+    return http.get(`/messages/${id}`);
+  },
+  create(message){
+    return http.post(`/messages`, message);
+  },
+  update(id, message){
+    return http.put(`/messages/${id}`, message);
+  },
+  delete(id){
+    return http.delete(`/messages/${id}`);
+  }
+}
+2:18 PM
+TopicService in services:
+import axios from 'axios';
+//import { create } from 'core-js/fn/object';
+const http = axios.create({
+  baseURL: "http://localhost:3000"
+});
+export default {
+  list() {
+    return http.get('/topics');
+  },
+  get(id) {
+    return http.get(`/topics/${id}`);
+  },
+  create(topic){
+    return http.post(`/topics/`, topic);
+  },
+  update(id, topic){
+    return http.put(`/topics/${id}`, topic);
+  },
+  delete(id){
+    return http.delete(`/topics/${id}`);
+  }
+}

@@ -13,10 +13,8 @@
     </div>
   </form>
 </template>
-
 <script>
 import messageService from "../services/MessageService";
-
 export default {
   name: "create-message",
   props: ["topicId", "messageId"],
@@ -35,6 +33,11 @@ export default {
         messageText: this.messageText
       };
       // call update in message service
+      messageService.update(message.id, message).then(response => {
+        if(response.status===200){
+          this.$router.push(`/${message.topicId}`);
+        }
+      });
     }
   },
   created() {
@@ -53,6 +56,5 @@ export default {
   }
 };
 </script>
-
 <style>
 </style>
