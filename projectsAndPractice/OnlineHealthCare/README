@@ -1,0 +1,35 @@
+All positions of employment are catalogued as ints. The keys are as follows:
+
+Department-------Integer
+Medical Director	0
+Department Heads	1
+Attending Physician	2
+Fellow				3
+Chief Resident		4
+Senior Resident		5	
+Junior Resident		6
+Temp Med. Positions	7	
+Administration		8	
+Intake-Faculty		9
+ER					10
+Staff				11
+Department Heads	12
+
+All positions 0-9 above are medical practitioners will have a specialty for their practice:
+Surgery				0
+General Medicine	1
+Pediatric			2
+Oncology			3
+Senior Care			4
+Infectious Dieseases5
+E.N.T				6
+Podiatric			7
+Neck/Spine			8
+Neurology			9
+Skeletal			10
+Muscular			11
+Respiratory			12
+Gastro/intestinal	13
+Circulatory			14
+Physical Therapy	15
+

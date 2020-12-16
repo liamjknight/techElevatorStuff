@@ -1,0 +1,171 @@
+Notes and Questions
+OOP: Object Oriented Programming
+is easy as PIE: Polymorphism, Inheritance, Encapsulation
+
+Encapsulation: keeping classes independent so that changing one
+one will not mess up another one. Loosely coupled system.
+    This involves which inputs you allow(constructors)
+    access modifiers:
+        public: anyone who imports pkg has access to classes where ever they are
+        imported.
+        private: can only be declared in the class it was written.
+        protected: used to create a base-class, any derivative class can access
+        default: we shouldn't be using
+        static: belongs to the class, not the specific implementations(object)
+        final: whatever follows cannot be changed through = operator
+    constructors allow for different instances of a method to be instanced
+    as separate objects. think the 2 different types of .substring: .substring(n)
+    or .substring(n, m)
+
+Interfaces have variables' whos names are defined by the interfaced method they
+    call, ie: int getStuff();
+
+Try adding ternary statements to the .substring(n, HERE); to not get an
+index-Out-Of-Bounds-Error!!
+
+
+
+Do interfaces compile at the same time as statics? Referring to the last Question
+    of quiz wherein the interface called both .getArea and .getPerimeter. If not
+    is it because the class implements the interface in it's declaration?------
+    NOPE the interface checks its dependencies, and if there is a missing reference
+    the compiler fails
+
+
+IT PROFESSIONALS PANEL
+All our resumes will look the same, find the way to pop!!!
+How can I have the "clout" as a junior hire to push for changes to larger projects?
+
+meetups and involvement
+philly jug meetup
+reactadelphia meetup
+comcast devops
+microsoft devacentral
+
+JOBS IN TECH
+1-3 years as junior dev
+years 2-4 mid level dev
+after 5-6 years senior level
+
+Some Top levels Earnable:
+VP of Engineering
+CTO
+Principal Engineer
+Chief Scientist
+
+SQL Stuff
+
+Data Query Language: Select statement
+Data Manipulation Language: Update, Insert, Delete statements
+Data Definition Language: Create statements
+Data Control Language: Grant, Revoke statements
+Transaction Control Language: Begin, Transaction, Commit, Rollback statements
+
+SELECT columns, Count(*) FROM table WHERE rows are true ORDER BY same data in column ASC/DESC;
+|| is the concatenation operator, ABS() gives the absolute value of a piece of data
+limit the number of returned rows by the LIMIT n keyword after the order by
+Count() returns an incremented number for each instance of it's count target
+Max() returns max value, MIN() for minimum, SUM() for sum total
+AVG() returns average of all values within column
+
+FLA for SQL statements
+C.reate
+R.ead
+U.pdate
+D.elete
+
+Syntax for an INSERT statement
+INSERT INTO table_name (column1, column2, column3, ...)
+VALUES (value1, value2, value3, ...);
+
+Syntax for an UPDATE statement Make as SELECT first
+UPDATE table_name SET column1 = value1, column2 = value2, ...
+WHERE condition;
+
+Syntax for a DELETE statement Make as SELECT first
+DELETE FROM table_name
+WHERE condition;
+
+transactions are blocks of SQL statements that either all run, or if one fails
+none work
+they are started with syntax BEGIN TRANSACTION;
+they are committed with COMMIT TRANSACTION;
+
+ACID test for SQL transactions
+-atomicity: all or nothing transactions
+-consistency: guarantees committed transaction state
+-isolation: transactions are independent
+-durability: committed data is never lost
+
+IN CREATING A TABLE:
+
+CREATE TABLE tablename(
+table_id serial NOT NULL,
+firstname varchar(45) NOT NULL,
+lastname varchar(45) NOT NULL.
+CONSTRAINT pk_tablename_table_id PRIMARY KEY (table_id)
+CONSTRAINT ck_tablename_lastname CHECK (lastname IN ('Knight', 'Flood', 'James'))
+);
+
+Typically foreign keys are not included in creation statements because not all tables are necessarily created,
+instead we will add them after all tables are added like this:
+ALTER TABLE bridge_table_name #where rk will be
+ADD FOREIGN KEY(table_id)
+REFRENCES tablename(table_id); #where pk is
+
+
+
+SPRING BOOT
+Annotations:
+@Component- adds DAO into the spring app, this makes it auto-detectable.
+@RestController-intakes url queries and helps send them to the right request mapping
+@RequestMapping-maps url from controller to a method
+@path-defines specific url this method will trigger upon
+@method-defines the http method to expect
+@RequestParam(required=false)-this will make a java variable from the info behind a ? in a url
+@PathVariable-defines a variable in java that existed in the url between curly brackets
+@RequestBody-defines what will bw in the body of the incoming request, often used in post/put
+Validations: All have a message parameter to send message upon failure
+@NotNull	    Any	The variable can't be null.
+@NotEmpty	    Array, List, String	The variable can't be null. Also, if it's a list or array, it can't be empty. If it's a String, it can't be an empty string.
+@NotBlank	    String	The variable can't be empty or only contain white space characters.
+@Min	        Int, long, BigDecimal	The variable must have a value greater than the specified minimum. Null values are skipped.
+@DecimalMin	    BigDecimal	The variable must have a value greater than the specified minimum decimal. Null values are skipped.
+@Size	        Array, List, String	The variable length, as an array, List, or String, must be within the bounds specified. Null values are skipped.
+@Past, @Future	Date, LocalDate	The variable must represent a date in the past/future. Null values are skipped.
+@Pattern	    String	The variable must hold a value that matches the specified regular expression. Null values are skipped.
+@Email          Checks to see if input string is in an email format
+
+@ResponseStatus( code = HttpStatus.NOT_FOUND, reason = "Reservation not found.")
+this throws an error 404 not found when the url is not looking for the correct information
+
+Spring Knows All These Work Together... Woah.
+
+
+
+
+
+
+
+
+
+
+
+
+PATHWAY INTERVIEW PANEL
+
+Mike borrelli PNC- look up company and interviewer if you know who it is, body language and eyecontact are even more 
+    important now interviews are on zoom. SHOW WHAT YOUR VALUE ADDED IS! dont fit the culture, improve it.
+Daniel krupansky- practice interviews, know what questions will be asked
+TJ Hazinsky- make sure people can hear you, research the interview style
+Melissa Sharp JPMC- differentiate yourself in a way. Think about compound questions**(write them down)**
+Miguel Guerreiro- Go in depth when talking about roles in technical projects... But still be converstaional. 
+    dress to impress
+
+RED FLAGS
+does not listen to questions and information, interrupted, save questions for the end, be focused on the interview!!
+
+
+Authentication- proves you are who you say you are
+Authorization- provides what you are allowed to do to the system
+
